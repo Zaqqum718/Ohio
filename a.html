@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IP 주소 확인</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0e0e0e;
+            color: #00ff88;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #ip {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>당신의 IP 주소</h1>
+<div id="ip">로딩 중...</div>
+
+<script>
+    async function fetchIP() {
+        try {
+            // ipify.org API로 내 IP 요청
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            document.getElementById('ip').textContent = data.ip;
+        } catch (error) {
+            console.error('IP 가져오기 실패:', error);
+            document.getElementById('ip').textContent = 'IP를 가져올 수 없습니다.';
+        }
+    }
+
+    fetchIP();
+</script>
+
+</body>
+</html>
